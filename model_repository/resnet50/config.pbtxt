@@ -1,0 +1,17 @@
+name: "resnet50"
+backend: "onnxruntime"
+max_batch_size: 4
+input [
+  {
+    name: "data"
+    data_type: TYPE_FP32
+    dims: [3, 224, 224]
+  }
+]
+output [
+  {
+    name: "resnetv17_dense0_fwd"
+    data_type: TYPE_FP32
+    dims: [1000]
+  }
+]
