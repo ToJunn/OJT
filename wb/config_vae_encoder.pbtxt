@@ -1,0 +1,21 @@
+name: "vae_encoder"
+platform: "onnxruntime_onnx"
+max_batch_size: 16  # Cho phép batch tối đa 16, có thể điều chỉnh
+
+input [
+  {
+    name: "image"
+    data_type: TYPE_FP16
+    dims: [3, 512, 512]
+  }
+]
+
+output [
+  {
+    name: "latents"
+    data_type: TYPE_FP16
+    dims: [-1, -1, -1]  # Cho phép kích thước động (batch, channels, height, width)
+  }
+]
+
+

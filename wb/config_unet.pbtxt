@@ -1,0 +1,29 @@
+name: "unet"
+platform: "onnxruntime_onnx"
+max_batch_size: 0  # Tắt batch size để không thêm chiều mới
+
+input [
+  {
+    name: "latents"
+    data_type: TYPE_FP16
+    dims: [-1, 8, 64, 64]  # (channels, height, width)
+  },
+  {
+    name: "time_steps"
+    data_type: TYPE_INT64
+    dims: [1]  # Giữ nguyên nếu mô hình yêu cầu 1 giá trị duy nhất
+  },
+  {
+    name: "text_embeddings"
+    data_type: TYPE_FP16
+    dims: [-1, 77, 768]  # Embedding từ CLIP
+  }
+]
+
+output [
+  {
+    name: "predicted_noise"
+    data_type: TYPE_FP16
+    dims: [-1, 4, 64, 64]  # Kết quả dự đoán của UNet
+  }
+]
