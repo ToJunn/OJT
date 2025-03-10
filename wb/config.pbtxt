@@ -1,0 +1,25 @@
+name: "text_encoder"
+platform: "onnxruntime_onnx"
+max_batch_size: 16  # Cho phép batch tối đa là 16
+
+input [
+  {
+    name: "input_ids"
+    data_type: TYPE_INT64
+    dims: [77]  # Chuỗi token ID đầu vào (77 tokens từ CLIP tokenizer)
+  }
+]
+
+output [
+  {
+    name: "text_embeddings"
+    data_type: TYPE_FP16
+    dims: [-1, 768]  # Batch size linh hoạt, vector nhúng 768 chiều
+  },
+  {
+    name: "1660"
+    data_type: TYPE_FP16
+    dims: [768]  # Vector nhúng 768 chiều
+  }
+]
+
